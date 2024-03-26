@@ -1,7 +1,7 @@
-const { remote } = require('webdriverio');
-const { wdOpts } = require('./config');
+// const { remote } = require('webdriverio');
+// const { wdOpts } = require('./config');
 
-async function login(driver) {
+export async function login(driver) {
 
     await driver.pause(5000);
     try {
@@ -18,16 +18,26 @@ async function login(driver) {
         await el1.click();
     } catch (e) {
         // console.log(e);
-        const el6 = await driver.$("id:com.reddit.frontpage:id/nav_icon_clickable_area");
-        await el6.click();
+        
+        try {
+            const el6 = await driver.$("~Profile avatar");
+            await el6.click();
+        } catch(e)
+        {
+            console.log("Logged in already.");
+            return;
+        }
 
         await driver.pause(1500);
 
-        el1 = await driver.$("com.reddit.frontpage:id/login_cta");
+        let el1 = await driver.$("id:com.reddit.frontpage:id/drawer_nav_item_title");
+        await el1.click();
+        
+        el1 = await driver.$("id:com.reddit.frontpage:id/login_cta");
         await el1.click();
     }
 
-    await driver.pause(4500);
+    await driver.pause(2500);
 
     try {
         const el2 = await driver.$("id:com.reddit.frontpage:id/username");
@@ -64,4 +74,6 @@ async function login(driver) {
 
 // runTest().catch(console.error);
 
-module.exports = login;
+// module.exports = login;
+
+export default login;

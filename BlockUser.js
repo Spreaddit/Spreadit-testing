@@ -1,12 +1,11 @@
-const { wdOpts } = require('./config');
-const { remote } = require('webdriverio');
-const login = require('./LoginWithEmail');
+import { wdOpts } from './config.js';
+import { remote } from 'webdriverio';
+import login from './LoginWithEmail.js';
+import { expect } from 'expect-webdriverio';
 
 async function runTest() {
   const driver = await remote(wdOpts);
   try {
-
-    driver.startActivity("com.reddit.frontpage", "launcher.default");
 
     await login(driver);
 
@@ -33,9 +32,12 @@ async function runTest() {
 
     const el10 = await driver.$("id:android:id/button1");
     await el10.click();
+    
+    const el0 = await driver.$("xpath://*[@text=\"The author of this post has been blocked\"]");
+    expect(el0).toExist();
 
   } finally {
-    await driver.pause(50000);
+    await driver.pause(3000);
     // await driver.deleteSession();
   }
 }

@@ -1,5 +1,8 @@
 {
   "dependencies": {
+    "expect": "^29.7.0",
+    "expect-webdriverio": "^4.12.2",
     "webdriverio": "^8.35.1"
-  }
+  },
+  "type": "module"
 }
