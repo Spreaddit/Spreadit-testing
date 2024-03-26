@@ -1,13 +1,13 @@
 import { wdOpts } from './config.js';
 import { remote } from 'webdriverio';
-import login from './LoginWithEmail.js';
+import { login } from './LoginWithEmail.js';
 import { expect } from 'expect-webdriverio';
 
 async function runTest() {
   const driver = await remote(wdOpts);
   try {
 
-    await login(driver);
+    await login(driver, 2);
 
     await driver.pause(7000);
 
