@@ -1,0 +1,40 @@
+#Module: User System
+
+#Severity: Minor
+
+#Status: Pending
+
+#Pre-condition: The user is logged in.
+
+#Test Data: email, password, user to block
+
+#Steps:
+
+Scenarios 
+(Not found -> No action needed)
+(Found)
+|--(Blocking you -> Found but can't access profile or quick follow him) -> (Unblocked you back to normal)
+|--(Doesn't allow follow -> follow btn doesn't exist)
+|--(You blocked him -> following failed)
+|--(Follows you -> No action)
+
+scenario 1 (Allowing to follow)
+-Login
+-Search for the username of the user to follow or directly through a link to his profile
+-Press follow
+Expected Result: The user is added to the following list
+
+scenario 2 (Unfollow)
+-Login
+-Search for the username of the user to unfollow or directly through a link to his profile
+-Press unfollow through their profile or quick unfollow.
+Expected Result: The user is removed from the following list
+
+#Postcondition:
+You won't get notified when they post or see them in your feed.
+
+#Actual Result:
+
+#Author:
+
+#Reviewed by:

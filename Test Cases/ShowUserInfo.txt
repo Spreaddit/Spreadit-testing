@@ -1,0 +1,32 @@
+#Module: User System
+
+#Severity: Minor
+
+#Status: Pending
+
+#Pre-condition: None
+
+#Test Data: link to the profile
+
+#Steps:
+
+Scenarios 
+(Not found -> 404 page)
+(Found)
+|--(Blocking you -> can't see his profile) -> (Unblocked you back to normal)
+|--(You blocked him -> can't see except for about section)
+
+
+scenario 1
+-Search for the username of the user to follow or directly through a link to his profile
+Expected Result: The user profile loaded
+
+#Postcondition:
+
+#Actual Result:
+
+#Comments:
+
+#Author:
+
+#Reviewed by:

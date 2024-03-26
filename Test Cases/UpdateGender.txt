@@ -1,0 +1,30 @@
+#Module: User System
+
+#Severity: Minor
+
+#Status: Pending
+
+#Pre-condition: The user is logged in.
+
+#Test Data: email, password
+
+#Steps:
+
+Scenarios 
+
+scenario 1
+-Login
+-Head to general settings
+-under the basic settings section you will find the option
+-Enter the gender  (Male/Female/ Prefer not to say)
+
+Expected Result: 
+Gender Updated.
+
+#Postcondition:
+
+#Actual Result:
+
+#Author:
+
+#Reviewed by:

@@ -1,0 +1,37 @@
+#Module: User System
+
+#Severity: Minor
+
+#Status: Pending
+
+#Pre-condition: The user is logged in.
+
+#Test Data: email, password
+
+#Steps:
+
+Scenarios 
+
+scenario 1
+-Login
+-Head to general settings
+-under the basic settings section you will find the option
+-Connect or Disconnect your current email.
+- Password must be provided when connecting or disconnecting the account
+
+
+NOTES:
+- When updating your email, you have to confirm and connect your new email, otherwise, the old email will be used to log in with Google
+- In case you signed up with Google and will disconnect your account, an email with a reset password link MUST be sent to set a password for your account
+- You can connect a different email rather than the one used for registration. After verifying the new one, you won't be able to use the old one to login, otherwise, the new one will be replaced with the old one in case of login without verification. 
+
+Expected Result: 
+Gender Updated.
+
+#Postcondition:
+
+#Actual Result:
+
+#Author:
+
+#Reviewed by:

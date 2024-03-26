@@ -1,0 +1,37 @@
+#Module: User System
+
+#Severity: Minor
+
+#Status: Pending
+
+#Pre-condition: The user is logged in.
+
+#Test Data: email, password, user to block
+
+#Steps:
+
+Scenarios 
+(Not found -> No action needed)
+(Found)
+|--(Blocking you -> can't report) -> (Unblocked you back to normal)
+|--(You blocked him -> can report)
+
+
+scenario 1
+-Login
+-Search for the username of the user to follow or directly through a link to his profile
+-Press on the menu
+-Report the user
+Expected Result: The user reported. Admin or moderator will be einformed to take an action.
+
+#Postcondition:
+Admin or moderators informed.
+
+#Actual Result:
+
+#Comments:
+Test cases related to the management of reports still need to be written.
+
+#Author:
+
+#Reviewed by:

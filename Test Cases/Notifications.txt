@@ -1,0 +1,40 @@
+#Module: User System
+
+#Severity: Minor
+
+#Status: Pending
+
+#Pre-condition: None
+
+#Test Data: 
+
+manage notifications :
+                                                sub-includes (inbox message/chat messages/chat request [other teams],
+                                                mentions, comments, upvotes to posts and comments,
+                                                replies to your comments, new followers, cake day, mod notifications (reports to posts))
+
+#Steps:
+
+Scenarios 
+
+scenario 1
+-Login
+- Head to general settings
+- toggle the notifications btns
+
+scenario 2
+- Same as scenario 1 but reversed.
+
+Expected Result: 
+Toggled
+
+#Postcondition:
+You won't get notifications.
+
+#Actual Result:
+
+#Comments:
+
+#Author:
+
+#Reviewed by:

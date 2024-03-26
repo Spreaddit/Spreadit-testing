@@ -1,0 +1,46 @@
+#Module: User System
+
+#Severity: Minor
+
+#Status: Pending
+
+#Pre-condition: None
+
+#Test Data: Email, Password, Username
+
+#Steps:
+
+Scenarios 
+(Signed before -> Login instead if the password was right or warning)
+(Not Signed)
+|--(Signup with email)
+|--(Signup with Google)
+Then choose a username and check its availability.
+
+---------------------
+| Email  | Password |
+---------------------
+|  NULL  |   NULL   |
+|  VAL   |   NULL   |
+|  NULL  |   VAL    |
+|  VAL   |   VAL    |
+‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾
+-Valid/Invalid email inputs
+-Check username existence
+-Check Maximum
+
+#Expected Result:
+Pick a username -> Gender -> Follow a subreddit
+Send a verification email.
+Verify the email.
+
+#Postcondition:
+Loggedin and has access to application functionalities. Suggest communities
+
+#Actual Result:
+
+#Comments:
+
+#Author:
+
+#Reviewed by:

@@ -1,0 +1,34 @@
+#Module: User System
+
+#Severity: Minor
+
+#Status: Pending
+
+#Pre-condition: The user is logged in.
+
+#Test Data: email, password
+
+#Steps:
+
+Scenarios 
+
+scenario 1
+-Login
+-Head to general settings
+-under the basic settings section you will find the option
+-Enter the email and password of your new email
+- In case you signed up with Google and will disconnect your account, an email with a reset password link MUST be sent to set a password for your account
+
+Expected Result: 
+A verification email is sent to your new email
+Another email is sent to the previous email to reset the email and password
+In case of pressing the recovery button, it's expected to enter the *original* email and password of the account. -> password is recovered email sent 
+
+#Postcondition:
+Email is updated while the old one is removed and can't be used to login.
+
+#Actual Result:
+
+#Author:
+
+#Reviewed by:

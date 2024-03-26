@@ -1,0 +1,31 @@
+#Module: User System
+
+#Severity: Minor
+
+#Status: Pending
+
+#Pre-condition: The user is logged in.
+
+#Test Data: email, password
+
+#Steps:
+
+Scenarios 
+
+scenario 1
+-Login
+-Head to general settings
+-under the basic settings section you will find the option
+-Enter the country
+
+Expected Result: 
+Country updated on all other platforms for that user.
+
+#Postcondition:
+The feed suggests more content from subreddits in that place. 
+
+#Actual Result:
+
+#Author:
+
+#Reviewed by:

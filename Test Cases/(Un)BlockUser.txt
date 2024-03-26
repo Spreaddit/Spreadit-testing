@@ -1,0 +1,35 @@
+#Module: User System
+
+#Severity: Minor
+
+#Status: Pending
+
+#Pre-condition: The user is logged in.
+
+#Test Data: email, password, user to block
+
+#Steps:
+scenario 1 (Not blocked)
+-Login
+-Search for the username of the user to block or directly through a link to his profile
+-Press the menu button
+-Block the user
+-Confirm
+Expected Result: Blocked and added to the block list
+
+scenario 2 (blocked)
+-Login
+-Head to the blocked user's section in settings under general settings or Search for the user and get to his profile and press the menu btn
+-Unblock a user. (Search for another user and unblock him)
+-Block again
+Expected Result: Can't block except after 24 hrs + Unblocked user has access again to your profile, posts and comments.
+
+#Postcondition:
+Blocked user can't contact, or view profile, posts, and comments.
+You unfollowed them if you were following them and can't see any of their posts or comments and can't follow, invite them to a community, chat, or send email to them. No searching through their profile. However, about section is still available and you can see what communities they are active in.
+
+#Actual Result:
+
+#Author:
+
+#Reviewed by:

@@ -1,0 +1,28 @@
+#Module: User System
+
+#Severity: Minor
+
+#Status: Pending
+
+#Pre-condition: The user is logged in.
+
+#Test Data: email, password, user to block
+
+#Steps:
+scenario 1 (Not blocked)
+-Login
+-go to general settings
+-Press manage blocked accounts
+-Unblock the user
+Expected Result: Unblocked and can not be blocekd again except after 24 hrs
+
+Expected Result: Can't block except after 24 hrs + Unblocked user has access again to your profile, posts and comments.
+
+#Postcondition:
+A normal user again with no restrictions.
+
+#Actual Result:
+
+#Author:
+
+#Reviewed by:

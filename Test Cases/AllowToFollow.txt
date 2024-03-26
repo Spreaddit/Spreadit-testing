@@ -1,0 +1,37 @@
+#Module: User System
+
+#Severity: Minor
+
+#Status: Pending
+
+#Pre-condition: None
+
+#Test Data: link to the profile
+
+#Steps:
+
+Scenarios 
+
+scenario 1
+-Login
+- Head to general settings
+- toggle the allow follow btn
+- Try following from another account
+
+scenario 2
+- Same as scenario 1 but reversed.
+
+Expected Result: 
+Can not be followed by other users.
+The user is removed from the following list of users who were following him.
+Users won't get notified or find you in their feed.
+
+#Postcondition:
+
+#Actual Result:
+
+#Comments:
+
+#Author:
+
+#Reviewed by:

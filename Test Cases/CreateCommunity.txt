@@ -1,0 +1,38 @@
+#Module: User System
+
+#Severity: Minor
+
+#Status: Pending
+
+#Pre-condition: None
+
+#Test Data: Email, Password, Username
+
+#Steps:
+
+Scenarios 
+(Community already exists)
+(Community does not exist)
+(Community name is valid and not empty)
+
+Scenario:
+-Login
+-Head to the community list and press create community
+-Community Type (Restricted/ Private/ Public)
+- +18
+
+#Expected Result:
+created a community with empty description and default rules.
+each community type has restrictions make sure they apply.
+
+#Postcondition:
+The user is an admin and moderator of this community without affecting his rules in other communities.
+The community is added to the user community list.
+
+#Actual Result:
+
+#Comments:
+
+#Author:
+
+#Reviewed by:
