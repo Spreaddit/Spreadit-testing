@@ -66,7 +66,8 @@ async function leaveProfile(driver)
   await e2.click();
 }
 
-async function headToBlockedContacts(driver) {
+async function goToSettings(driver)
+{
   const e3 = await driver.$("id:com.reddit.frontpage:id/nav_icon_clickable_area");
   await e3.click();
 
@@ -74,6 +75,11 @@ async function headToBlockedContacts(driver) {
   await e4.click();
 
   await driver.pause(1000);
+}
+
+async function headToBlockedContacts(driver) {
+
+  await goToSettings(driver);
 
   const e5 = await driver.$("xpath://androidx.recyclerview.widget.RecyclerView[@resource-id=\"com.reddit.frontpage:id/recycler_view\"]/android.view.ViewGroup[1]/android.widget.ImageView[2]");
   await e5.click();
@@ -204,4 +210,4 @@ async function runTest() {
 
 // runTest().catch(console.error);
 
-export {searchForUser, MainActivity};
+export {searchForUser, MainActivity, goToSettings};
