@@ -26,7 +26,12 @@ Expected Result: Can't block except after 24 hrs + Unblocked user has access aga
 
 #Postcondition:
 Blocked user can't contact, or view profile, posts, and comments.
-You unfollowed them if you were following them and can't see any of their posts or comments and can't follow, invite them to a community, chat, or send email to them. No searching through their profile. However, about section is still available and you can see what communities they are active in.
+You unfollowed them if you were following them and can't see any of their posts or comments and can't follow, 
+invite them to a community, 
+chat, 
+or send email to them. 
+No searching through their profile. 
+However, about section is still available and you can see what communities they are active in.
 
 #Actual Result:
 

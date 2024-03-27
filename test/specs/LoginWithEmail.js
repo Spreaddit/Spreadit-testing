@@ -1,19 +1,19 @@
 // const { remote } = require('webdriverio');
 // const { wdOpts } = require('./config');
 
-async function enterUserData(driver)
+async function enterUserData(driver, user, pass)
 {
     const el2 = await driver.$("id:com.reddit.frontpage:id/username");
-    await el2.addValue("testing5781111");
+    await el2.addValue(user);
 
     const el3 = await driver.$("id:com.reddit.frontpage:id/password");
-    await el3.addValue("pass@2024");
+    await el3.addValue(pass);
 
     const el4 = await driver.$("id:com.reddit.frontpage:id/confirm");
     await el4.click();
 }
 
-async function firstTimeLogin(driver)
+async function firstTimeLogin(driver, user, pass)
 {
     await driver.pause(5000);
     
@@ -31,16 +31,16 @@ async function firstTimeLogin(driver)
 
     await driver.pause(2500);
 
-    await enterUserData(driver);
+    await enterUserData(driver, user, pass);
 
     await driver.pause(2000);
 
 }
 
-async function savedLoginData(driver)
+async function savedLoginData(driver, user, pass)
 {
     try {
-        await enterUserData(driver);
+        await enterUserData(driver, user, pass);
         await driver.pause(2000);
     } catch(e)
     {
@@ -51,7 +51,7 @@ async function savedLoginData(driver)
 
 }
 
-async function loginAfterLogout(driver)
+async function loginAfterLogout(driver, user, pass)
 {
     let el1;
 
@@ -60,12 +60,12 @@ async function loginAfterLogout(driver)
 
     await driver.pause(2500);
 
-    await savedLoginData(driver);
+    await savedLoginData(driver, user, pass);
 
 }
 
 
-async function loginWithinTheApp(driver)
+async function loginWithinTheApp(driver, user, pass)
 {
     const el6 = await driver.$("id:com.reddit.frontpage:id/nav_icon_clickable_area");
     await el6.click();
@@ -80,17 +80,17 @@ async function loginWithinTheApp(driver)
 
     await driver.pause(2500);
 
-    await savedLoginData(driver);
+    await savedLoginData(driver, user, pass);
 }
 
+// "No_Total3397", "asd123ASD"
 
-
-async function login(driver, callback) {
+async function login(callback, driver, user = "No_Total3397", pass = "asd123ASD") {
 
     const methods = [firstTimeLogin, loginAfterLogout, loginWithinTheApp];
 
     try {
-        await methods[callback](driver);
+        await methods[callback](driver, user, pass);
     } catch (e)
     {
         console.log(e);

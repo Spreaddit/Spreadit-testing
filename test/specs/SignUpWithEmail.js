@@ -1,5 +1,5 @@
-const { remote } = require('webdriverio');
-const { wdOpts } = require('./config');
+import { remote } from 'webdriverio';
+import { wdOpts } from '../run/config';
 
 async function runTest() {
     const driver = await remote(wdOpts);
