@@ -208,6 +208,6 @@ async function runTest() {
   }
 }
 
-// runTest().catch(console.error);
+runTest().catch(console.error);
 
 export {searchForUser, MainActivity, goToSettings};

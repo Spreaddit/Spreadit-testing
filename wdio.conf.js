@@ -22,7 +22,7 @@ export const config = {
     // of the config file unless it's absolute.
     //
     specs: [
-        "./test/run/*.js"
+        "./test/specs/**/*.js",
     ],
     // Patterns to exclude.
     exclude: [
@@ -52,13 +52,12 @@ export const config = {
     //
     capabilities: [{
         // capabilities for local Appium web tests on an Android Emulator
-        platformName: 'Android',
-        // browserName: 'Chrome',
-        'appium:deviceName': 'emulator-5554',
-        // 'appium:platformVersion': '12.0',
-        'appium:automationName': 'UiAutomator2',
+        "platformName": "Android",
+        "appium:deviceName": "emulator-5554",
+        "appium:automationName": "UiAutomator2",
         "appium:appPackage": "com.reddit.frontpage",
-        "appium:appActivity": "launcher.default"
+        "appium:appActivity": "launcher.default",
+        "appium:noReset": true
     }],
 
     //
@@ -68,7 +67,7 @@ export const config = {
     // Define all options that are relevant for the WebdriverIO instance here
     //
     // Level of logging verbosity: trace | debug | info | warn | error | silent
-    logLevel: 'trace',
+    logLevel: 'info',
     //
     // Set specific log levels per logger
     // loggers:
@@ -108,23 +107,7 @@ export const config = {
     // Services take over a specific job you don't want to take care of. They enhance
     // your test setup with almost no effort. Unlike plugins, they don't add new
     // commands. Instead, they hook themselves up into the test process.
-    services: [
-        [
-            'appium',
-            {
-            // For options see
-            // https://github.com/webdriverio/webdriverio/tree/master/packages/wdio-appium-service
-                args: {
-                // For arguments see
-                // https://github.com/webdriverio/webdriverio/tree/master/packages/wdio-appium-service
-                    address: "localhost",
-                    port: 4723
-                },
-                command: 'appium',
-                logPath : './'
-            },
-        ],
-    ],
+    services: ['appium'],
 
     // Framework you want to run your specs with.
     // The following are supported: Mocha, Jasmine, and Cucumber
