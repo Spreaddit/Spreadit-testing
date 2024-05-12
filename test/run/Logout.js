@@ -1,41 +1,27 @@
-// import { wdOpts } from './config.js';
-// import { remote } from 'webdriverio';
+import { wdOpts } from './config.js';
+import { remote } from 'webdriverio';
 
 async function logout(driver) {
     try {
 
-        // accessibility id:Logged in avatar
-        const el6 = await driver.$("id:com.reddit.frontpage:id/nav_icon_clickable_area");
-        await el6.click();
+        // await driver.execute("mobile: clickGesture", {
+        //     x: 13, y: 97
+        // });
 
-        await driver.pause(1500);
+        const el4 = await driver.$("xpath://android.widget.FrameLayout[@resource-id=\"android:id/content\"]/android.widget.FrameLayout/android.view.View/android.view.View/android.view.View/android.view.View/android.view.View[1]/android.widget.Button[4]");
+        await el4.click();
 
-        await driver.execute("mobile: clickGesture", {
-            x: 13, y: 97
-        });
+        const el5 = await driver.$("accessibility id:Log out");
+        await el5.click();
 
-        const el7 = await driver.$('id:com.reddit.frontpage:id/nav_user_name');
-
-        if (await el7.isExisting()) {
-            await el7.click();
-            console.log("Logging out...");
-
-            await driver.pause(500);
-
-            const el8 = await driver.$("id:com.reddit.frontpage:id/account_remove");
-            await el8.click();
-
-            await driver.pause(3000);
-
-            const el9 = await driver.$("id:com.reddit.frontpage:id/confirm_remove_account_logout");
-            await el9.click();
-
-            console.log('Logged Out.');
+        if (await driver.$("xpath://android.widget.Button[@content-desc=\"Continue with email\"]").isExisting())
+        {
+            console.log("Pass: Logout successful!");
+        }    
+        else
+        {
+            console.log("Fail: Logout failed!");
         }
-        else {
-            console.log("Faild to logout.\n");
-        }
-
     } catch (e) {
         console.error(e);
     }
@@ -45,8 +31,6 @@ async function logout(driver) {
     }
 }
 
-// logout();
+// logout(await remote(wdOpts));
 
 export { logout };
-
-// runTest().catch(console.error);

@@ -5,9 +5,9 @@ const capabilities = {
     "platformName": "Android",
     "appium:deviceName": "emulator-5554",
     "appium:automationName": "UiAutomator2",
-    "appium:appPackage": "com.reddit.frontpage",
-    "appium:appActivity": "launcher.default",
-    "appium:noReset": true
+    "appium:appPackage": "com.example.spreadit_cross",
+    "appium:appActivity": "MainActivity"
+    // "appium:noReset": true
 };
 
 export const wdOpts = {

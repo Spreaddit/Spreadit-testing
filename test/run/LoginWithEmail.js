@@ -1,119 +1,52 @@
 // const { remote } = require('webdriverio');
 // const { wdOpts } = require('./config');
+import { remote } from 'webdriverio';
+import { wdOpts } from './config.js';
+import { logout } from './Logout.js';
+import { enterUserData, firstTimeLogin, login } from './Helper.js';
 
-async function enterUserData(driver, user, pass)
-{
-    const el2 = await driver.$("id:com.reddit.frontpage:id/username");
-    await el2.addValue(user);
+async function wrongCredintials(driver) {
+    // Wrong username
+    await login(driver, "amira", "12345678", "Passed: Wrong username.");
+    // console.log("Passed: Wrong username.");
 
-    const el3 = await driver.$("id:com.reddit.frontpage:id/password");
-    await el3.addValue(pass);
+    // Wrong password
+    await driver.startActivity("com.example.spreadit_cross", ".MainActivity");
+    await driver.pause(3000);
+    await login(driver, "amiraelgarf", "123459", "Passed: Wrong password.");
+    // console.log("Passed: Wrong password.");
 
-    const el4 = await driver.$("id:com.reddit.frontpage:id/confirm");
-    await el4.click();
+    // Wrong username and password
+    await driver.startActivity("com.example.spreadit_cross", ".MainActivity");
+    await driver.pause(3000);
+    await login(driver, "amira", "123459", "Passed: Wrong username and password.");
+    // console.log("Passed: Wrong username and password.");
+
+    // Empty fields
+    await driver.startActivity("com.example.spreadit_cross", ".MainActivity");
+    await driver.pause(3000);
+    await login(driver, "", "", "Passed: Empty fields.");
+    // console.log("Passed: Empty fields.");
 }
 
-async function firstTimeLogin(driver, user, pass)
-{
-    await driver.pause(5000);
-    
-    // In case of allowing notification permission
+async function runTest() {
+    const driver = await remote(wdOpts);
     try {
-        const el = await driver.$("id:com.android.permissioncontroller:id/permission_allow_button");
-        // e1.waitForExist({ timeout: 10000 });
-        await el.click();
-    } catch(e) {
-        await driver.pause(7000);
+
+        // Normal login
+        await login(driver);
+
+        await driver.pause(3000);
+
+        await logout(driver);
+
+        // Wrong credintials
+        await wrongCredintials(driver);
+
+    } finally {
+        await driver.pause(3000);
+        // await driver.deleteSession();
     }
-
-    const el1 = await driver.$("id:com.reddit.frontpage:id/sso_login_button");
-    await el1.click();
-
-    await driver.pause(2500);
-
-    await enterUserData(driver, user, pass);
-
-    await driver.pause(2000);
-
 }
 
-async function savedLoginData(driver, user, pass)
-{
-    try {
-        await enterUserData(driver, user, pass);
-        await driver.pause(2000);
-    } catch(e)
-    {
-        await driver.pause(2000);
-        const el2 = await driver.$("xpath://androidx.recyclerview.widget.RecyclerView[@resource-id=\"com.reddit.frontpage:id/account_picker_accounts\"]/android.view.ViewGroup[1]");
-        await el2.click();
-    }
-
-}
-
-async function loginAfterLogout(driver, user, pass)
-{
-    let el1;
-
-    el1 = await driver.$("id:com.reddit.frontpage:id/sso_login_button");
-    await el1.click();
-
-    await driver.pause(2500);
-
-    await savedLoginData(driver, user, pass);
-
-}
-
-
-async function loginWithinTheApp(driver, user, pass)
-{
-    const el6 = await driver.$("id:com.reddit.frontpage:id/nav_icon_clickable_area");
-    await el6.click();
-
-    await driver.pause(1500);
-
-    let el1 = await driver.$("id:com.reddit.frontpage:id/drawer_nav_item_title");
-    await el1.click();
-    
-    el1 = await driver.$("id:com.reddit.frontpage:id/login_cta");
-    await el1.click();
-
-    await driver.pause(2500);
-
-    await savedLoginData(driver, user, pass);
-}
-
-// "No_Total3397", "asd123ASD"
-
-async function login(callback, driver, user = "No_Total3397", pass = "asd123ASD") {
-
-    const methods = [firstTimeLogin, loginAfterLogout, loginWithinTheApp];
-
-    try {
-        await methods[callback](driver, user, pass);
-    } catch (e)
-    {
-        console.log(e);
-        return;
-    }
-
-    console.log('Logged in successfully.');
-}
-
-// async function runTest() {
-//     const driver = await remote(wdOpts);
-//     try {
-
-//         await login(driver);
-
-//     } finally {
-//         await driver.pause(3000);
-//         await driver.deleteSession();
-//     }
-// }
-
-// runTest().catch(console.error);
-
-// module.exports = login;
-
-export {login};
+runTest().catch(console.error);

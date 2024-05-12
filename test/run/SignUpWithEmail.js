@@ -1,53 +1,90 @@
 import { remote } from 'webdriverio';
-import { wdOpts } from './config';
+import { wdOpts } from './config.js';
+import { MainActivity, login } from './Helper.js';
+
+async function SignUpWithGoogle(driver, username, email = "quarnwebsender@gmail.com") {
+    const el1 = await driver.$("accessibility id:Continue with Google");
+    await el1.click();
+    
+    await driver.pause(3000);
+
+    const el2 = await driver.$("xpath://android.widget.TextView[@resource-id=\"com.google.android.gms:id/account_name\" and @text=\"" + email + "\"]");
+    await el2.click();
+
+    await driver.pause(3000);
+    
+    const el5 = await driver.$("accessibility id:Continue");
+    await el5.click();
+
+}
+
+async function SignUpWithEmail(driver, username, email) {
+    const el1 = await driver.$("accessibility id:Continue with email");
+    await el1.click();
+
+    const el2 = await driver.$("xpath://android.widget.FrameLayout[@resource-id=\"android:id/content\"]/android.widget.FrameLayout/android.view.View/android.view.View/android.view.View/android.view.View/android.view.View[1]/android.widget.EditText[1]");
+    await el2.click();
+    await driver.pause(1000);
+    await el2.addValue(email);
+
+    const el4 = await driver.$("xpath://android.widget.FrameLayout[@resource-id=\"android:id/content\"]/android.widget.FrameLayout/android.view.View/android.view.View/android.view.View/android.view.View/android.view.View[1]/android.widget.EditText[2]");
+    await el4.click();
+    await driver.pause(1000);
+    await el4.addValue("12345678");
+
+    await driver.pause(3000);
+
+    const el5 = await driver.$("accessibility id:Continue");
+    await el5.click();
+
+    await driver.pause(3000);
+
+    const el3 = await driver.$("xpath://android.widget.EditText");
+    await el3.click();
+    await driver.pause(1000);
+    await el3.addValue(username);
+
+    await el5.click();
+
+    await driver.pause(3000);
+
+    let created = await driver.$("accessibility id:Verify Your Email").isExisting();
+    if (created) {
+        console.log('Account created successfully.');
+    }
+    else {
+        console.log('Account creation failed.');
+    }
+}
 
 async function runTest() {
     const driver = await remote(wdOpts);
     try {
 
-        const el1 = await driver.$("id:com.reddit.frontpage:id/email_button");
-        await el1.click();
+        let username = "testingy1";
+        let email = "fakesss@gmail.com";
 
-        const el2 = await driver.$("id:com.reddit.frontpage:id/email");
-        await el2.addValue("abdelrahmanayman3002@gmail.com");
+        await SignUpWithEmail(driver, username, email);
 
-        const el4 = await driver.$("id:com.reddit.frontpage:id/password");
-        await el4.addValue("pass@2024");
-
-        const el3 = await driver.$("id:com.reddit.frontpage:id/username");
-        await el3.addValue("testing57811111");
+        await MainActivity(driver);
 
         await driver.pause(3000);
 
-        const el5 = await driver.$("id:com.reddit.frontpage:id/confirm");
-        await el5.click();
-
-        await driver.pause(6000);
-
-        const el10 = await driver.$("id:com.reddit.frontpage:id/action_skip");
-        await el10.click();
-
-        console.log('Account created successfully.');
-
-        const el6 = await driver.$("accessibility id:Logged in avatar");
-        await el6.click();
-
-        await driver.pause(500);
-
-        const el7 = await driver.$("id:com.reddit.frontpage:id/nav_user_name_container");
-        await el7.click();
-
-        await driver.pause(500);
-
-        const el8 = await driver.$("id:com.reddit.frontpage:id/account_remove");
-        await el8.click();
+        await login(driver, username, "12345678");
 
         await driver.pause(3000);
 
-        const el9 = await driver.$("id:com.reddit.frontpage:id/confirm_remove_account_logout");
-        await el9.click();
+        await MainActivity(driver);
 
-        console.log('Logged Out.');
+        // Same email and usrename
+        await SignUpWithEmail(driver, username, email);
+
+        await driver.pause(3000);
+
+        await MainActivity(driver);
+
+        // Same email different usrename
+        await SignUpWithEmail(driver, "username11", email);
 
     } finally {
         await driver.pause(3000);

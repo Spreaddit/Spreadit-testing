@@ -1,16 +1,14 @@
 import { remote } from 'webdriverio';
 import { wdOpts } from './config.js';
-import { login } from './LoginWithEmail.js';
-import { searchForUser, MainActivity } from './BlockUser.js';
+import { login, searchForUser, MainActivity } from './Helper.js';
 
 async function manageFollowingUser(driver, user) {
     try {
-
-        const el1 = await driver.$("id:com.reddit.frontpage:id/profile_follow");
+        const el1 = await driver.$("//android.widget.Button[contains(@content-desc, 'Follow')]");
         
         if (await el1.isExisting())
         {
-            let txt = await el1.getText();
+            let txt = await el1.getAttribute("content-desc");
 
             if (txt == "Follow")
             {
@@ -23,14 +21,10 @@ async function manageFollowingUser(driver, user) {
                 await el1.click();
             }
         }
-        else
-        {
-            console.log("User does not allow follow.\n");
-        }
 
         await driver.pause(2000);
 
-        let txt = await driver.$("id:com.reddit.frontpage:id/profile_follow").getText();
+        let txt = await driver.$("//android.widget.Button[contains(@content-desc, 'Follow')]").getAttribute("content-desc");
 
         if (txt == "Following")
         {
@@ -49,26 +43,21 @@ async function manageFollowingUser(driver, user) {
 
 async function runTest() {
     const driver = await remote(wdOpts);
-    const userToFollow = "testing5781111";
+    const userToFollow = "basma12"; // No_Total3397
     try {
-
-        await MainActivity(driver);
-        
-        await driver.pause(3000);
-
-        let isLogged = 1;
+        let isLogged = 0;
         if (!isLogged) {
             console.log("Logging in first...");
-            // "No_Total3397", "asd123ASD"
-            await login(2, driver, "testing5781111", "pass@2024"); // 2 for loginWithinTheApp
-            await driver.pause(3000);
+            await login(driver);
+            await driver.pause(6000);
         }
 
         console.log("Search for the username of the user to follow");
         await searchForUser(driver, userToFollow);
 
-        await driver.pause(3000);
+        await driver.pause(5000);
 
+        console.log("Following the user....");
         // Execute scenario 1 (Allowing to follow + unblocking you)
         await manageFollowingUser(driver, userToFollow);
     } finally {
