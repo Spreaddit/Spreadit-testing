@@ -66,13 +66,15 @@ async function runTest() {
 
         await SignUpWithEmail(driver, username, email);
 
+        await driver.pause(3000);
+
         await MainActivity(driver);
 
         await driver.pause(3000);
 
         await login(driver, username, "12345678");
 
-        await driver.pause(3000);
+        await driver.pause(5000);
 
         await MainActivity(driver);
 
