@@ -92,7 +92,7 @@ async function runTest() {
   let user = "farouq12";
   try {
 
-    let isLogged = 0;
+    let isLogged = 1;
     if (await !isLogged) {
       console.log("Logging in first...");
       // "farouq12", "12345678"
@@ -149,8 +149,8 @@ async function runTest() {
 
     // await headToBlockedContacts(driver);
 
-    console.log("Unblocking the user...");
-    await unblock(driver, user);
+    // console.log("Unblocking the user...");
+    // await unblock(driver, user);
 
     // await MainActivity(driver);
 

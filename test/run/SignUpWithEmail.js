@@ -2,6 +2,9 @@ import { remote } from 'webdriverio';
 import { wdOpts } from './config.js';
 import { MainActivity, login } from './Helper.js';
 
+// Verification email is sent but doesn't work
+// Sign up with Google doesn't work
+
 async function SignUpWithGoogle(driver, username, email = "quarnwebsender@gmail.com") {
     const el1 = await driver.$("accessibility id:Continue with Google");
     await el1.click();
